@@ -19,6 +19,8 @@ The focus was not just on getting a server running, but on understanding how AWS
 
 ## Architecture
 
+![EC2 instance running](screenshots/ec2-running.png)
+
 The architecture for this project is intentionally minimal to emphasize clarity and security boundaries:
 
 User
@@ -39,6 +41,8 @@ The following security measures were implemented:
 * AWS Security Groups used as the primary network firewall
 * OS-level firewall tools are not enabled by default on Amazon Linux 2023, so traffic control was enforced at the AWS level
 
+![Security group inbound rules](screenshots/security-group-inbound-rules.png)
+
 An insecure configuration where SSH was opened publicly was briefly tested and immediately corrected to understand the associated risk.
 
 Security controls were intentionally applied at the cloud network layer to reduce attack surface before traffic reached the instance.
@@ -50,6 +54,8 @@ During the project, several issues were encountered:
 * Initial SSH connection confusion due to key pair handling
 * Discovering that firewalld, iptables, and nftables are not installed by default on Amazon Linux 2023
 * Understanding the functional difference between OS-level firewalls and AWS Security Groups
+
+![No firewall packages installed on Amazon Linux 2023](screenshots/no-firewall-packages-amazon-linux-2023.png)
 
 These challenges helped clarify how AWS enforces security at the network layer and why cloud-native security controls are often preferred.
 This reinforced the importance of understanding default OS behavior when deploying infrastructure in the cloud.
@@ -64,6 +70,8 @@ Cost control was treated as a core requirement throughout the project:
 * EC2 instance stopped and terminated immediately after testing
 
 All resources were cleaned up after use to prevent unintended charges, ensuring hands-on learning without unnecessary cost.
+
+![EC2 instance terminated to prevent charges](screenshots/instance-terminated.png)
 
 ## Next Steps
 
